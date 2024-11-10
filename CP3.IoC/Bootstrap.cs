@@ -16,6 +16,9 @@ namespace CP3.IoC
                 x.UseOracle(configuration["ConnectionStrings:Oracle"]);
             });
 
+            services.AddTransient<IBarcoRepository, BarcoRepository>();
+
+            services.AddTransient<IBarcoApplicationService, BarcoApplicationService>();
 
         }
 

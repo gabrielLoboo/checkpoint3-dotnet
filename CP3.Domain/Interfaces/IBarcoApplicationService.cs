@@ -10,6 +10,5 @@ namespace CP3.Domain.Interfaces
         BarcoEntity AdicionarBarco(IBarcoDto entity);
         BarcoEntity EditarBarco(int id, IBarcoDto entity);
         BarcoEntity RemoverBarco(int id);
-
     }
 }

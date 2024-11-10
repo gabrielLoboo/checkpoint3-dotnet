@@ -12,5 +12,46 @@ namespace CP3.Data.Repositories
         {
             _context = context;
         }
+
+        public IEnumerable<BarcoEntity>? ObterTodos()
+        {
+            return _context.Set<BarcoEntity>().ToList();
+        }
+
+        public BarcoEntity? ObterPorId(int Id)
+        {
+            return _context.Set<BarcoEntity>().Find(Id);
+        }
+
+        public BarcoEntity? Adicionar(BarcoEntity barco)
+        {
+            _context.Set<BarcoEntity>().Add(barco);
+            _context.SaveChanges();
+            return barco;
+        }
+
+        public BarcoEntity? Editar(BarcoEntity barco)
+        {
+            var barcoExistente = _context.Set<BarcoEntity>().Find(barco.Id);
+            if (barcoExistente == null) return null;
+
+            barcoExistente.Nome = barco.Nome;
+            barcoExistente.Modelo = barco.Modelo;
+            barcoExistente.Ano = barco.Ano;
+            barcoExistente.Tamanho = barco.Tamanho;
+
+            _context.SaveChanges();
+            return barcoExistente;
+        }
+
+        public BarcoEntity? Remover(int Id)
+        {
+            var barco = _context.Set<BarcoEntity>().Find(Id);
+            if (barco == null) return null;
+
+            _context.Set<BarcoEntity>().Remove(barco);
+            _context.SaveChanges();
+            return barco;
+        }
     }
 }
